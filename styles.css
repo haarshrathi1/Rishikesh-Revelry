@@ -1,0 +1,408 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* ====================================
+   Variables
+==================================== */
+:root {
+    --primary-color: #ff4444;
+    --secondary-color: #ff6666;
+    --background-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --border-color: #444;
+    --accent-color: #ffd700;
+}
+
+/* ====================================
+   Global Styles
+==================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(-45deg, #1a1a1a, #2c2c2c, #1a1a1a, #2c2c2c);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    scroll-behavior: smooth;
+}
+
+/* Gradient Animation */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ====================================
+   Navigation Bar
+==================================== */
+header {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+/* Hamburger Menu Styles */
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    cursor: pointer;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    background-color: var(--text-color);
+    height: 3px;
+    width: 25px;
+    border-radius: 3px;
+    position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+}
+
+.nav-toggle-label span::before {
+    top: -8px;
+}
+
+.nav-toggle-label span::after {
+    top: 8px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background-color: var(--secondary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus::after {
+    width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+    color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+    .nav-toggle-label {
+        display: block;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        background-color: rgba(0, 0, 0, 0.95);
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 60px;
+        left: -100%;
+        transition: left 0.3s ease;
+        padding-top: 20px;
+    }
+    
+    .nav-links li {
+        text-align: center;
+    }
+    
+    .nav-toggle:checked + .nav-toggle-label + .nav-links {
+        left: 0;
+    }
+}
+
+/* ====================================
+   Main Content
+==================================== */
+.comic-container {
+    width: 90%;
+    max-width: 1000px;
+    background-color: rgba(44, 44, 44, 0.95);
+    padding: 120px 20px 40px 20px; /* Top padding accounts for fixed navbar */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    border: 5px solid var(--border-color);
+    margin: 40px auto 20px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Title */
+.comic-title {
+    text-align: center;
+    color: var(--accent-color);
+    font-size: 48px;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-in-out forwards;
+    font-family: 'Bangers', cursive;
+     /* Gradient Text */
+     background: linear-gradient(300deg, #e03d3d, #b46d68, #e63b3b);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+     animation: fadeIn 2s ease-in-out forwards;
+}
+
+/* Introduction */
+.comic-intro {
+    font-size: 20px;
+    line-height: 1.8;
+    background: #3a3a3a;
+    padding: 15px;
+    border-radius: 8px;
+    border: 3px solid var(--border-color);
+    box-shadow: 5px 5px #000;
+    margin-bottom: 30px;
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+/* Part Titles */
+.part-title {
+    font-size: 36px;
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px #000;
+    animation: fadeIn 1.5s ease-in-out forwards;
+    font-family: 'Bangers', cursive;
+}
+
+/* Comic Pages */
+.comic-page {
+    margin-bottom: 40px;
+    text-align: center;
+    opacity: 0; /* Start hidden for AOS */
+}
+
+.comic-page h3 {
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    text-shadow: 2px 2px #000;
+    animation: fadeIn 1.5s ease-in-out forwards;
+    font-family: 'Bangers', cursive;
+}
+
+.comic-page img {
+    width: 100%;
+    height: auto;
+    border: 5px solid var(--border-color);
+    box-shadow: 10px 10px #000;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+.comic-page img:hover {
+    transform: scale(1.05);
+}
+
+/* Paragraphs */
+.comic-page p {
+    font-size: 20px;
+    line-height: 1.8;
+    background: #3a3a3a;
+    padding: 15px;
+    border-radius: 8px;
+    border: 3px solid var(--border-color);
+    box-shadow: 5px 5px #000;
+    margin-bottom: 15px;
+    text-align: left;
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+/* Blockquotes for Dialogues */
+blockquote {
+    font-size: 20px;
+    font-style: italic;
+    background: #555;
+    padding: 10px 20px;
+    border-left: 5px solid var(--primary-color);
+    margin: 15px auto;
+    width: 80%;
+    border-radius: 5px;
+    box-shadow: 3px 3px #000;
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+/* To Be Continued */
+.to-be-continued {
+    font-size: 22px;
+    margin-top: 20px;
+    text-align: center;
+    background: #3a3a3a;
+    padding: 15px;
+    border-radius: 8px;
+    border: 3px solid var(--border-color);
+    box-shadow: 5px 5px #000;
+    font-style: italic;
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+/* Navigation Link */
+.nav-link {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.nav-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 24px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    text-decoration: none;
+    text-shadow: 2px 2px #000;
+    border: 3px solid var(--border-color);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-link a:hover,
+.nav-link a:focus {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+}
+
+/* ====================================
+   Footer
+==================================== */
+footer {
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* ====================================
+   Animations
+==================================== */
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ====================================
+   Accessibility Enhancements
+==================================== */
+.nav-links a:focus {
+    outline: 2px dashed var(--secondary-color);
+    outline-offset: 4px;
+}
+
+/* ====================================
+   Responsive Design Enhancements
+==================================== */
+@media (max-width: 768px) {
+    .comic-title {
+        font-size: 36px;
+    }
+    .part-title {
+        font-size: 28px;
+    }
+    .comic-page h3 {
+        font-size: 24px;
+    }
+    .comic-intro, .comic-page p, .to-be-continued {
+        font-size: 18px;
+    }
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        background-color: rgba(0, 0, 0, 0.95);
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 60px;
+        left: -100%;
+        transition: left 0.3s ease;
+        padding-top: 20px;
+    }
+    .nav-links li {
+        text-align: center;
+    }
+    .nav-toggle-label {
+        display: block;
+    }
+    .nav-toggle:checked + .nav-toggle-label + .nav-links {
+        left: 0;
+    }
+}
