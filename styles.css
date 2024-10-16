@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Roboto&display=swap');
 
 /* ====================================
    Variables
@@ -50,6 +49,12 @@ body {
     }
 }
 
+/* Responsive Images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 /* ====================================
    Navigation Bar
 ==================================== */
@@ -60,6 +65,7 @@ header {
     top: 0;
     left: 0;
     z-index: 1000;
+    transition: top 0.3s;
 }
 
 .navbar {
@@ -84,13 +90,21 @@ header {
     cursor: pointer;
 }
 
+.nav-toggle-label {
+    width: 40px;
+    height: 30px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
 .nav-toggle-label span,
 .nav-toggle-label span::before,
 .nav-toggle-label span::after {
     display: block;
     background-color: var(--text-color);
     height: 3px;
-    width: 25px;
+    width: 30px;
     border-radius: 3px;
     position: relative;
 }
@@ -153,7 +167,9 @@ header {
 /* Responsive Navbar */
 @media (max-width: 768px) {
     .nav-toggle-label {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .nav-links {
@@ -166,7 +182,7 @@ header {
         top: 60px;
         left: -100%;
         transition: left 0.3s ease;
-        padding-top: 20px;
+        padding-top: 80px;
     }
     
     .nav-links li {
@@ -176,13 +192,19 @@ header {
     .nav-toggle:checked + .nav-toggle-label + .nav-links {
         left: 0;
     }
+    
+    .nav-links a {
+        padding: 15px;
+        margin: 5px 0;
+        font-size: 22px;
+    }
 }
 
 /* ====================================
    Main Content
 ==================================== */
 .comic-container {
-    width: 90%;
+    width: 95%;
     max-width: 1000px;
     background-color: rgba(44, 44, 44, 0.95);
     padding: 120px 20px 40px 20px; /* Top padding accounts for fixed navbar */
@@ -368,41 +390,64 @@ footer p {
     outline-offset: 4px;
 }
 
+a:focus, button:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
 /* ====================================
    Responsive Design Enhancements
 ==================================== */
 @media (max-width: 768px) {
+    body {
+        animation: none; /* Disable background animation on mobile */
+    }
+    
+    .comic-container {
+        padding: 100px 10px 20px 10px;
+    }
+
     .comic-title {
-        font-size: 36px;
+        font-size: 32px;
     }
+
     .part-title {
-        font-size: 28px;
-    }
-    .comic-page h3 {
         font-size: 24px;
     }
+
+    .comic-page h3 {
+        font-size: 20px;
+    }
+
     .comic-intro, .comic-page p, .to-be-continued {
-        font-size: 18px;
+        font-size: 16px;
     }
+
+    .comic-page p, blockquote {
+        padding: 10px;
+    }
+
     .nav-links {
-        flex-direction: column;
-        gap: 10px;
-        background-color: rgba(0, 0, 0, 0.95);
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        top: 60px;
-        left: -100%;
-        transition: left 0.3s ease;
-        padding-top: 20px;
+        padding-top: 80px;
     }
-    .nav-links li {
-        text-align: center;
-    }
-    .nav-toggle-label {
-        display: block;
-    }
-    .nav-toggle:checked + .nav-toggle-label + .nav-links {
-        left: 0;
+
+    .nav-links a {
+        padding: 15px;
+        margin: 5px 0;
+        font-size: 22px;
     }
 }
+
+/* Prevent Horizontal Scrolling */
+html, body {
+    overflow-x: hidden;
+}
+
+/* ====================================
+   Touch-Friendly Elements
+==================================== */
+.nav-links a {
+    padding: 10px 15px;
+    margin: 5px 0;
+}
+
