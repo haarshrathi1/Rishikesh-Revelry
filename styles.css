@@ -23,16 +23,12 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background: linear-gradient(-45deg, #1a1a1a, #2c2c2c, #1a1a1a, #2c2c2c);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    background: url('images/A_detailed_comic-style_background_image_of_a_mysti.png') no-repeat center center fixed;
+    background-size: cover;
     scroll-behavior: smooth;
 }
 
